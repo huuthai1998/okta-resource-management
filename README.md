@@ -28,7 +28,6 @@ module "okta_resource_management" {
   org_name                  = var.org_name
   base_url                  = var.base_url
   client_id                 = var.client_id
-  scopes                    = var.scopes
   private_key               = file("new.key")
   private_key_id            = var.private_key_id
   resources_set_label       = var.resources_set_label
@@ -51,7 +50,6 @@ Some example inputs:
 org_name = "orgName"
 base_url = "okta.com"
 client_id = "yourAppIdHere"
-scopes = ["okta.policies.manage", "okta.apps.manage", "okta.appGrants.manage", "okta.roles.manage", "okta.users.manage", "okta.groups.manage"]
 private_key_id = "PrivateKeyIdOfTheApp"
 
 app_label = "IZ App"

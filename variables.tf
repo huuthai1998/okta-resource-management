@@ -14,11 +14,6 @@ variable "client_id" {
   type        = string
 }
 
-variable "scopes" {
-  description = "These are scopes for obtaining the API token in form of a comma separated list. It can also be sourced from the OKTA_API_SCOPES environment variable."
-  type        = list(string)
-}
-
 variable "private_key" {
   description = "This is the private key for obtaining the API token (can be represented by a filepath, or the key itself). It can also be sourced from the OKTA_API_PRIVATE_KEY environment variable."
   type        = string
