@@ -1,14 +1,15 @@
 # Terraform Okta Resource Management
 
-This component is used to create OAuth app, custom admin role, resource sets and link them together.
+This component is used to create OAuth app, API App, custom admin role, resource sets and link them together.
 
 It creates:
 
 - Okta OAuth App
+- Okta API App
 - Custom Admin Role
 - Resource Set
-- Assign OAuth App to resource set
-- Assign custom admin role to the resource set
+- Assign API App to resource set
+- Assign custom admin role to the resource set and API app
 
 ## Run-Book
 
@@ -30,15 +31,16 @@ module "okta_resource_management" {
   client_id                 = var.client_id
   private_key               = file("new.key")
   private_key_id            = var.private_key_id
+  api_app_label             = var.api_app_label
+  oauth_app_label           = var.oauth_app_label
+  oauth_app_type            = var.oauth_app_type
+  oauth_app_response_types  = var.oauth_app_response_types
+  oauth_app_grant_types     = var.oauth_app_grant_types
   resources_set_label       = var.resources_set_label
   resources_set_description = var.resources_set_description
   custom_role_label         = var.custom_role_label
   custom_role_description   = var.custom_role_description
   custom_role_permissions   = var.custom_role_permissions
-  app_label                 = var.app_label
-  app_type                  = var.app_type
-  app_response_types        = var.app_response_types
-  app_grant_types           = var.app_grant_types
 }
 
 ```

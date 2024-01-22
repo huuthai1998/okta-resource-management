@@ -1,12 +1,27 @@
-module "okta_app" {
-  source         = "../okta_app"
+module "okta_api_app" {
+  source         = "./okta_app"
   org_name       = var.org_name
   base_url       = var.base_url
   client_id      = var.client_id
+  api_scopes     = ["okta.apps.manage", "okta.roles.manage"]
   private_key    = var.private_key
   private_key_id = var.private_key_id
-  label          = var.app_label
-  type           = var.app_type
-  response_types = var.app_response_types
-  grant_types    = var.app_grant_types
+  label          = var.api_app_label
+  type           = "service"
+  response_types = ["token"]
+  grant_types    = ["client_credentials"]
+}
+
+module "okta_oauth_app" {
+  source         = "./okta_app"
+  org_name       = var.org_name
+  base_url       = var.base_url
+  client_id      = var.client_id
+  api_scopes     = ["okta.apps.manage", "okta.roles.manage"]
+  private_key    = var.private_key
+  private_key_id = var.private_key_id
+  label          = var.oauth_app_label
+  type           = var.oauth_app_type
+  response_types = var.oauth_app_response_types
+  grant_types    = var.oauth_app_grant_types
 }

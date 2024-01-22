@@ -26,22 +26,28 @@ variable "private_key_id" {
 
 # variables for app
 
-variable "app_label" {
-  description = "The Application's display name."
+variable "api_app_label" {
+  description = "The API Application's display name."
+  type        = string
+  default     = "API app for terraform"
+}
+
+variable "oauth_app_label" {
+  description = "The OAuth Application's display name."
   type        = string
 }
 
-variable "app_type" {
+variable "oauth_app_type" {
   description = "The type of OAuth application. For SPA apps use browser. Valid values: web, native, browser, service."
   type        = string
 }
 
-variable "app_response_types" {
+variable "oauth_app_response_types" {
   description = "List of OAuth 2.0 response type strings. The values must be code, token, id_token."
   type        = list(string)
 }
 
-variable "app_grant_types" {
+variable "oauth_app_grant_types" {
   description = "List of OAuth 2.0 grant types. Valid values: authorization_code, implicit, password, refresh_token, client_credentials, urn:ietf:params:oauth:grant-type:saml2-bearer (Early Access Property), urn:ietf:params:oauth:grant-type:token-exchange (Early Access Property), interaction_code (OIE only)."
   type        = list(string)
 }
