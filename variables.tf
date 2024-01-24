@@ -22,18 +22,13 @@ variable "private_key" {
 variable "private_key_id" {
   description = "This is the private key ID (kid) for obtaining the API token. It can also be sourced from OKTA_API_PRIVATE_KEY_ID environmental variable."
   type        = string
+  default     = ""
 }
 
 # variables for app
 
-variable "api_app_label" {
-  description = "The API Application's display name."
-  type        = string
-  default     = "API app for terraform"
-}
-
-variable "oauth_app_label" {
-  description = "The OAuth Application's display name."
+variable "app_base_label" {
+  description = "The Application's base name."
   type        = string
 }
 
@@ -45,31 +40,18 @@ variable "oauth_app_type" {
 variable "oauth_app_response_types" {
   description = "List of OAuth 2.0 response type strings. The values must be code, token, id_token."
   type        = list(string)
+  default     = ["code"]
 }
 
 variable "oauth_app_grant_types" {
   description = "List of OAuth 2.0 grant types. Valid values: authorization_code, implicit, password, refresh_token, client_credentials, urn:ietf:params:oauth:grant-type:saml2-bearer (Early Access Property), urn:ietf:params:oauth:grant-type:token-exchange (Early Access Property), interaction_code (OIE only)."
   type        = list(string)
+  default     = ["authorization_code"]
 }
 
-variable "resources_set_label" {
-  description = "Unique name given to the Resource Set."
-  type        = string
-}
-
-variable "resources_set_description" {
-  description = "A description of the Resource Set."
-  type        = string
-}
-
-variable "custom_role_label" {
-  description = "The name given to the new Role."
-  type        = string
-}
-
-variable "custom_role_description" {
-  description = "A human-readable description of the new Role."
-  type        = string
+variable "redirect_uris" {
+  description = "List of URIs for use in the redirect-based flow. This is required for all application types except service."
+  type        = list(string)
 }
 
 variable "custom_role_permissions" {

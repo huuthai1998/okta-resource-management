@@ -18,6 +18,7 @@ resource "okta_app_oauth" "app" {
   type           = var.type
   response_types = var.response_types
   grant_types    = var.grant_types
+  redirect_uris  = var.redirect_uris
 
   jwks {
     kty = local.jwks.kty

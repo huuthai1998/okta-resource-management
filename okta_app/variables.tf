@@ -38,12 +38,13 @@ variable "api_scopes" {
 variable "type" {
   description = "The type of OAuth application. For SPA apps use browser. Valid values: web, native, browser, service."
   type        = string
+  default     = "web"
 }
 
 variable "redirect_uris" {
   description = "List of URIs for use in the redirect-based flow. This is required for all application types except service."
   type        = list(string)
-  default     = []
+  default     = null
 }
 
 variable "response_types" {

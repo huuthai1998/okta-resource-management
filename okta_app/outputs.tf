@@ -4,8 +4,7 @@ output "key_private" {
 }
 
 output "key_id" {
-  sensitive = true
-  value     = random_string.kid
+  value = random_string.kid.result
 }
 
 output "app_id" {

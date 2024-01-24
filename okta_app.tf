@@ -6,7 +6,7 @@ module "okta_api_app" {
   api_scopes     = ["okta.apps.manage", "okta.roles.manage"]
   private_key    = var.private_key
   private_key_id = var.private_key_id
-  label          = var.api_app_label
+  label          = "${var.app_base_label} Api App"
   type           = "service"
   response_types = ["token"]
   grant_types    = ["client_credentials"]
@@ -20,8 +20,9 @@ module "okta_oauth_app" {
   api_scopes     = ["okta.apps.manage", "okta.roles.manage"]
   private_key    = var.private_key
   private_key_id = var.private_key_id
-  label          = var.oauth_app_label
+  label          = "${var.app_base_label} OAuth App"
   type           = var.oauth_app_type
   response_types = var.oauth_app_response_types
   grant_types    = var.oauth_app_grant_types
+  redirect_uris  = var.redirect_uris
 }
