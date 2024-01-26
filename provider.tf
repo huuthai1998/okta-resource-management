@@ -6,3 +6,8 @@ provider "okta" {
   private_key_id = var.private_key_id
   scopes         = ["okta.policies.manage", "okta.appGrants.manage", "okta.apps.manage", "okta.roles.manage", ]
 }
+
+provider "github" {
+  owner = "northerntrust-internal"
+  token = var.github_token
+}

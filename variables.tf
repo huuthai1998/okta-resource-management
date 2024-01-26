@@ -25,16 +25,43 @@ variable "private_key_id" {
   default     = ""
 }
 
+
+variable "env" {
+  description = "The environment Okta resources should belong to."
+  type        = string
+  validation {
+    condition     = contains(["DEV", "UAT", "PROD"], var.env)
+    error_message = "Environment must be DEV, UAT or PROD."
+  }
+  default = "DEV"
+}
+
+variable "github_repo_url" {
+  description = "The repository where the function app code will reside."
+  type        = string
+  default     = ""
+}
+
+variable "github_token" {
+  description = "The Github token of NT"
+  type        = string
+}
+
 # variables for app
 
 variable "app_base_label" {
-  description = "The Application's base name."
+  description = "The Application's display name."
   type        = string
 }
 
 variable "oauth_app_type" {
   description = "The type of OAuth application. For SPA apps use browser. Valid values: web, native, browser, service."
   type        = string
+  validation {
+    condition     = contains(["web", "native", "browser", "service"], var.oauth_app_type)
+    error_message = "Environment must be web, native, browser, service."
+  } 
+  default = "web"
 }
 
 variable "oauth_app_response_types" {
@@ -57,4 +84,5 @@ variable "redirect_uris" {
 variable "custom_role_permissions" {
   description = "The permissions that the new Role grants. At least one permission must be specified when creating custom role. Valid values: okta.authzServers.manage, okta.authzServers.read, okta.apps.assignment.manage, okta.apps.manage, okta.apps.read, okta.customizations.manage, okta.customizations.read, okta.groups.appAssignment.manage, okta.groups.create, okta.groups.manage, okta.groups.members.manage, okta.groups.read, okta.profilesources.import.run, okta.users.appAssignment.manage, okta.users.create, okta.users.credentials.expirePassword, okta.users.credentials.manage, okta.users.credentials.resetFactors, okta.users.credentials.resetPassword, okta.users.groupMembership.manage, okta.users.lifecycle.activate, okta.users.lifecycle.clearSessions, okta.users.lifecycle.deactivate, okta.users.lifecycle.delete, okta.users.lifecycle.manage, okta.users.lifecycle.suspend, okta.users.lifecycle.unlock, okta.users.lifecycle.unsuspend, okta.users.manage, okta.users.read, okta.users.userprofile.manage, okta.workflows.invoke"
   type        = list(string)
+  default     = ["okta.apps.assignment.manage","okta.users.manage","okta.apps.manage"]
 }
