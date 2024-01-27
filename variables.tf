@@ -22,9 +22,7 @@ variable "private_key" {
 variable "private_key_id" {
   description = "This is the private key ID (kid) for obtaining the API token. It can also be sourced from OKTA_API_PRIVATE_KEY_ID environmental variable."
   type        = string
-  default     = ""
 }
-
 
 variable "env" {
   description = "The environment Okta resources should belong to."
@@ -48,41 +46,19 @@ variable "github_token" {
 }
 
 # variables for app
-
-variable "app_base_label" {
+variable "label" {
   description = "The Application's display name."
   type        = string
 }
 
-variable "oauth_app_type" {
-  description = "The type of OAuth application. For SPA apps use browser. Valid values: web, native, browser, service."
-  type        = string
-  validation {
-    condition     = contains(["web", "native", "browser", "service"], var.oauth_app_type)
-    error_message = "Environment must be web, native, browser, service."
-  } 
-  default = "web"
-}
-
-variable "oauth_app_response_types" {
-  description = "List of OAuth 2.0 response type strings. The values must be code, token, id_token."
-  type        = list(string)
-  default     = ["code"]
-}
-
-variable "oauth_app_grant_types" {
-  description = "List of OAuth 2.0 grant types. Valid values: authorization_code, implicit, password, refresh_token, client_credentials, urn:ietf:params:oauth:grant-type:saml2-bearer (Early Access Property), urn:ietf:params:oauth:grant-type:token-exchange (Early Access Property), interaction_code (OIE only)."
-  type        = list(string)
-  default     = ["authorization_code"]
-}
-
-variable "redirect_uris" {
-  description = "List of URIs for use in the redirect-based flow. This is required for all application types except service."
-  type        = list(string)
-}
 
 variable "custom_role_permissions" {
   description = "The permissions that the new Role grants. At least one permission must be specified when creating custom role. Valid values: okta.authzServers.manage, okta.authzServers.read, okta.apps.assignment.manage, okta.apps.manage, okta.apps.read, okta.customizations.manage, okta.customizations.read, okta.groups.appAssignment.manage, okta.groups.create, okta.groups.manage, okta.groups.members.manage, okta.groups.read, okta.profilesources.import.run, okta.users.appAssignment.manage, okta.users.create, okta.users.credentials.expirePassword, okta.users.credentials.manage, okta.users.credentials.resetFactors, okta.users.credentials.resetPassword, okta.users.groupMembership.manage, okta.users.lifecycle.activate, okta.users.lifecycle.clearSessions, okta.users.lifecycle.deactivate, okta.users.lifecycle.delete, okta.users.lifecycle.manage, okta.users.lifecycle.suspend, okta.users.lifecycle.unlock, okta.users.lifecycle.unsuspend, okta.users.manage, okta.users.read, okta.users.userprofile.manage, okta.workflows.invoke"
   type        = list(string)
-  default     = ["okta.apps.assignment.manage","okta.users.manage","okta.apps.manage"]
+  default     = ["okta.apps.assignment.manage", "okta.users.manage", "okta.apps.manage"]
+}
+
+variable "resource_set_id" {
+  description = "ID of resource set that is linked with the role for service API app"
+  type        = string
 }

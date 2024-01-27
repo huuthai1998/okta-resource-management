@@ -1,12 +1,12 @@
-output "api_key_private" {
+output "key_private" {
   sensitive = true
-  value     = module.okta_api_app.key_private
+  value     = tls_private_key.rsa
 }
 
-output "api_key_id" {
-  value = module.okta_api_app.key_id
+output "key_id" {
+  value = random_string.kid.result
 }
 
 output "app_id" {
-  value = module.okta_api_app.app_id
+  value = okta_app_oauth.app.id
 }
