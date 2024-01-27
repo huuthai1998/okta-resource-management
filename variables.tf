@@ -58,7 +58,7 @@ variable "custom_role_permissions" {
   default     = ["okta.apps.assignment.manage", "okta.users.manage", "okta.apps.manage"]
 }
 
-variable "resource_set_id" {
-  description = "ID of resource set that is linked with the role for service API app"
+variable "oidc_app_id" {
+  description = "ID of the OIDC app to place in resource set"
   type        = string
 }
